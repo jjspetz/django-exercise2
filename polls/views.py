@@ -31,7 +31,10 @@ def pizza(request):
                     }
                     return TemplateResponse(request, 'results.html', context)
 
-            Choice.objects.create(answer="form.cleaned_data['answer']", votes=1, poll=poll)
+            Choice.objects.create(answer=form.cleaned_data['answer'], votes=1, poll=poll.get())
+            context = {
+                'results': Choice.objects.filter(poll=poll),
+            }
             return TemplateResponse(request, 'results.html', context)
 
     content = {
