@@ -6,9 +6,10 @@ class CategoryAdmin(admin.ModelAdmin):
   list_display = ('name', 'slug')
 
 @admin.register(Poll)
-class BlogAdmin(admin.ModelAdmin):
+class PollAdmin(admin.ModelAdmin):
   list_display = ('question', 'slug')
+  filter_horizontal = ('categories',)
 
 @admin.register(Choice)
-class PostAdmin(admin.ModelAdmin):
+class ChoiceAdmin(admin.ModelAdmin):
   list_display = ('answer', 'votes', 'poll')

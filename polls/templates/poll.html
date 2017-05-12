@@ -7,7 +7,8 @@
 {% block content %}
   <ul>
     {% for poll in polls %}
-      <li>{{poll.slug}}</li>
+      <li><a href="?category={{c.slug}}">{{poll.slug}}</a></li>
     {% endfor %}
   </ul>
+  <a href="?search=category"><button>Search by Category</button></a>
 {% endblock %}

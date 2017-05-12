@@ -26,11 +26,3 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.answer
-
-# class ChoiceInLine(admin.TabularInline):
-#     model = Choice
-#
-# class PollAdmin(admin.ModelAdmin):
-#     inlines = [
-#         ChoiceInLine
-#     ]
