@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{poll.slug}}
+{% endblock %}
+
+{% block content %}
+  <div style="width: 400px; font-size: 14pt">
+    <h3> What is the best topping for pizza?</h3>
+    <br>
+
+    {% for answer in results %}
+
+      <div>{{answer.answer}}: {{answer.votes}}</div>
+
+    {% endfor %}
+</div>
+  <!-- <canvas id="pollresults"></canvas> -->
+{% endblock %}

@@ -21,4 +21,5 @@ import polls.views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^polls/$', polls.views.polls),
+    url(r'^pizza/$', polls.views.pizza),
 ]

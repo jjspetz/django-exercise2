@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 from django.contrib import admin
 from django.conf import settings
 
@@ -26,3 +27,9 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.answer
+
+class PizzaAnswerForm(ModelForm):
+    class Meta:
+        model = Choice
+        field = ['answer']
+        exclude = ['votes', 'poll']
