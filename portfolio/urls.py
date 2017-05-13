@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^polls/$', polls.views.polls),
     url(r'^pizza/$', polls.views.pizza),
+    url(r'^answer/pizza-topping-poll/$', polls.views.pizza),
+    url(r'^answer/(\S+)/$', polls.views.answerpoll),
 ]

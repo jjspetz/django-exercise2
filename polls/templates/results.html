@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-  {{poll.slug}}
+  results
 {% endblock %}
 
 {% block content %}
   <div style="width: 400px; font-size: 14pt">
-    <h3> What is the best topping for pizza?</h3>
+    <h3> Results </h3>
     <br>
 
     {% for answer in results %}
@@ -14,6 +14,9 @@
       <div>{{answer.answer}}: {{answer.votes}}</div>
 
     {% endfor %}
-</div>
+  </div><br>
+  <a href = "../../polls/">
+  <button>Polls</button>
+  </a>
   <!-- <canvas id="pollresults"></canvas> -->
 {% endblock %}

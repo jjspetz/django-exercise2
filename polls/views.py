@@ -17,13 +17,15 @@ def polls(request):
 
 def pizza(request):
     form = PizzaAnswerForm(request.POST or None)
-    poll = Poll.objects.filter(slug='pizza-topping-poll')
+    poll = get_object_or_404(Poll, slug='pizza-topping-poll')
     answers = Choice.objects.filter(poll=poll)
 
     if request.method == 'POST':
         if form.is_valid():
+            data = form.cleaned_data['answer'].lower()
+
             for answer in answers:
-                if answer.answer == form.cleaned_data['answer']:
+                if answer.answer == data:
                     answer.votes += 1
                     answer.save()
                     context = {
@@ -31,13 +33,34 @@ def pizza(request):
                     }
                     return TemplateResponse(request, 'results.html', context)
 
-            Choice.objects.create(answer=form.cleaned_data['answer'], votes=1, poll=poll.get())
+            Choice.objects.create(answer=data, votes=1, poll=poll)
             context = {
                 'results': Choice.objects.filter(poll=poll),
             }
             return TemplateResponse(request, 'results.html', context)
 
     content = {
-        'form' : form
+        'form' : form,
+        'poll' : poll,
     }
-    return TemplateResponse(request, 'testform.html', content)
+    return TemplateResponse(request, 'pizzapoll.html', content)
+
+def answerpoll(request, poll_slug):
+    poll = get_object_or_404(Poll, slug=poll_slug)
+    answers = Choice.objects.filter(poll=poll)
+
+    if request.method == 'POST':
+        for answer in answers:
+            if answer.answer == request.POST.get('ans', ''):
+                answer.votes += 1
+                answer.save()
+                context = {
+                    'results': answers,
+                }
+                return TemplateResponse(request, 'results.html', context)
+
+    content = {
+        'poll' : poll,
+        'answers' : answers,
+    }
+    return TemplateResponse(request, 'answerpoll.html', content)

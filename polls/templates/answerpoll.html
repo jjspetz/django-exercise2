@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{poll.slug}}
+{% endblock %}
+
+{% block content %}
+<form action='/answer/{{poll.slug}}/' method='post'>
+  {% csrf_token %}
+  <h2>{{poll.question}}</h2>
+  {% for answer in answers %}
+    <input type="radio" name="ans" value={{answer.answer}}>{{answer.answer}}<br>
+  {% endfor %}
+  <br>
+  <input type='submit'>
+</form>
+{% endblock %}

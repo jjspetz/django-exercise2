@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Pizza Topping Form
+  {{poll.slug}}
 {% endblock %}
 
 {% block content %}
-<form action='/pizza/' method='post'>
+<form action='/answer/{{poll.slug}}/' method='post'>
   {% csrf_token %}
-  <h2>What is the best pizza topping?</h2>
+  <h2>{{poll.question}}</h2>
     {{form.as_p}}
   <input type='submit'>
 </form>
