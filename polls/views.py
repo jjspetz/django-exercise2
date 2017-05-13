@@ -30,12 +30,14 @@ def pizza(request):
                     answer.save()
                     context = {
                         'results': answers,
+                        'poll' : poll,
                     }
                     return TemplateResponse(request, 'results.html', context)
 
             Choice.objects.create(answer=data, votes=1, poll=poll)
             context = {
                 'results': Choice.objects.filter(poll=poll),
+                'poll' : poll,
             }
             return TemplateResponse(request, 'results.html', context)
 
@@ -56,8 +58,10 @@ def answerpoll(request, poll_slug):
                 answer.save()
                 context = {
                     'results': answers,
+                    'poll' : poll,
                 }
                 return TemplateResponse(request, 'results.html', context)
+
 
     content = {
         'poll' : poll,

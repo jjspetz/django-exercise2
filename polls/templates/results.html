@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-  results
+  {{poll.slug}}
 {% endblock %}
 
 {% block content %}
   <div style="width: 400px; font-size: 14pt">
-    <h3> Results </h3>
-    <br>
+    <h2> {{poll.question}} </h2>
 
     {% for answer in results %}
 
